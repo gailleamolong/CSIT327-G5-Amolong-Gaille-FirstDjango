@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Log in | CampusConnect{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-12 col-md-7 col-lg-5">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-md-5">
+                <h1 class="h3 mb-2">Welcome back</h1>
+                <p class="text-body-secondary mb-4">Log in to continue to CampusConnect.</p>
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.non_field_errors }}
+                    {% for hidden in form.hidden_fields %}{{ hidden }}{% endfor %}
+                    <div class="mb-3">
+                        <label class="form-label" for="{{ form.username.id_for_label }}">{{ form.username.label }}</label>
+                        <input class="form-control" type="text" name="{{ form.username.html_name }}" id="{{ form.username.id_for_label }}" value="{{ form.username.value|default:'' }}" autocomplete="username" required autofocus>
+                        {% for error in form.username.errors %}<div class="invalid-feedback d-block">{{ error }}</div>{% endfor %}
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="{{ form.password.id_for_label }}">{{ form.password.label }}</label>
+                        <input class="form-control" type="password" name="{{ form.password.html_name }}" id="{{ form.password.id_for_label }}" autocomplete="current-password" required>
+                        {% for error in form.password.errors %}<div class="invalid-feedback d-block">{{ error }}</div>{% endfor %}
+                    </div>
+                    <button class="btn btn-primary w-100" type="submit">Log in</button>
+                </form>
+                <p class="text-center text-body-secondary mt-4 mb-0">No account? <a href="{% url 'signup' %}">Sign up</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

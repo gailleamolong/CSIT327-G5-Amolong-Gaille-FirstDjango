@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}Dashboard | CampusConnect{% endblock %}
+{% block content %}
+<div class="mb-4">
+    <p class="text-primary text-uppercase fw-semibold small mb-1">{{ role_label }} dashboard</p>
+    <h1 class="display-6 fw-semibold mb-1">Welcome, {{ user.first_name|default:user.username }}!</h1>
+    <p class="text-body-secondary mb-0">Here is your CampusConnect profile at a glance.</p>
+</div>
+<div class="row g-3">
+    <div class="col-12 col-md-6">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body">
+                <div class="text-body-secondary small">Role</div>
+                <div class="fs-5 fw-semibold">{{ role_label }}</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-6">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body">
+                <div class="text-body-secondary small">Course</div>
+                <div class="fs-5 fw-semibold">{{ user.course|default:"Not set" }}</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-6">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body">
+                <div class="text-body-secondary small">CampusConnect members</div>
+                <div class="fs-5 fw-semibold">{{ member_count }}</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-6">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body">
+                <div class="text-body-secondary small">Last login</div>
+                <div class="fs-5 fw-semibold">{{ user.last_login|date:"M d, Y"|default:"First login" }}</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="mt-4">
+    <a class="btn btn-outline-primary" href="{% url 'profile' %}">Edit profile</a>
+</div>
+{% if is_admin %}
+    <div class="mt-4"><a class="btn btn-primary" href="{% url 'admin_panel' %}">Open admin panel</a></div>
+{% endif %}
+{% endblock %}

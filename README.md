@@ -1,4 +1,7 @@
-# CSIT327-Amolong-Gaille-FirstDjango
+# CSIT327-G5-Amolong-Gaille-FirstDjango
+
+**Student:** Gaille Amolong
+**Section:** G5
 
 CampusConnect is a Django application for student registration, authentication, profiles, and a role-protected dashboard.
 
